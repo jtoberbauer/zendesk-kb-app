@@ -61,4 +61,4 @@ if query:
     for r in results:
         st.markdown(f"**{r.payload['title']}** — [View Original]({r.payload['url']})")
         st.markdown(f"<div style='background-color:#f9f9f9; padding:0.75em; border-radius:6px; word-wrap:break-word; overflow-wrap:break-word;'>{r.payload['text']}</div>", unsafe_allow_html=True)
-        st.markdown("---")n
+        st.markdown("---")
