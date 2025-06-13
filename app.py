@@ -3,10 +3,19 @@ from qdrant_client import QdrantClient
 from openai import OpenAI
 import tiktoken
 
+# Try loading secrets
+required_keys = ["OPENAI_API_KEY", "QDRANT_URL", "QDRANT_API_KEY"]
+missing_keys = [key for key in required_keys if key not in st.secrets]
+
+if missing_keys:
+    st.error(f"❌ Missing required secrets: {', '.join(missing_keys)}")
+    st.stop()
+
+
 # Config
-OPENAI_API_KEY = "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"
-QDRANT_URL = "https://97d1f6e9-a2c9-4396-a58c-5807c7cc0a52.us-east4-0.gcp.cloud.qdrant.io/"
-QDRANT_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.Wlzi6SDqW_yeNDWS9YLsxMjJU30t7PQSA9N8wyxmrUQ"
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+QDRANT_URL = st.secrets["QDRANT_URL"]
+QDRANT_API_KEY = st.secrets["QDRANT_API_KEY"]
 COLLECTION_NAME = "zendesk_kb"
 
 openai = OpenAI(api_key=OPENAI_API_KEY)
@@ -52,4 +61,4 @@ if query:
     for r in results:
         st.markdown(f"**{r.payload['title']}** — [View Original]({r.payload['url']})")
         st.markdown(f"<div style='background-color:#f9f9f9; padding:0.75em; border-radius:6px; word-wrap:break-word; overflow-wrap:break-word;'>{r.payload['text']}</div>", unsafe_allow_html=True)
-        st.markdown("---")
+        st.markdown("---")n
