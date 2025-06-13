@@ -42,7 +42,7 @@ def summarize_answer(query, chunks):
 
 # Streamlit UI
 st.set_page_config(page_title="Zendesk AI Search", layout="wide")
-st.title("🔎 Zendesk Knowledge Assistant")
+st.title("🔎 BasicOps Knowledge Assistant")
 
 # --- Question box ---
 query = st.text_input("Ask a question about your support articles:")
